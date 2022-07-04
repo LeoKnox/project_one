@@ -1,0 +1,17 @@
+{% extends "room/base.html" %}
+{% block title %}My Room{% endblock %}
+{% block content %}
+    <h1>My Room</h1>
+    {% for room in rooms %}
+        <h2>
+            <a href="{{ room.get_absolute_url }}">
+                {{ room.name }}
+            </a>
+        </h2>
+        <p class="description">
+            Description:
+            {{ room.description }}
+        </p>
+        <p>Length: {{ room.length }} | Width: {{ room.width }}</p>
+    {% endfor %}
+{% endblock %}
