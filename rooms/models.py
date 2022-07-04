@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class RoomManager(models.Manager):
     def get_queryset(self):
-        return super(RoomManager, self).get_queryset().filter(status='built')
+        return super(RoomManager, self).get_queryset().filter(name='entry')
 
 class Room(models.Model):
     ROOM_SHAPES = (
@@ -21,7 +21,7 @@ class Room(models.Model):
                                 choices=ROOM_SHAPES,
                                 default='square')
     objects = models.Manager()
-    built = RoomManager()
+    room = RoomManager()
 
     class Meta:
         ordering = ('-name',)
