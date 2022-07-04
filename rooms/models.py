@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class RoomManager(models.Manager):
+    def get_queryset(self):
+        return super(RoomManager, self).get_queryset().filter(status='built')
+
 class Room(models.Model):
     ROOM_SHAPES = (
         ('square', 'Square'),
@@ -16,6 +20,8 @@ class Room(models.Model):
     shape = models.CharField(max_length=10,
                                 choices=ROOM_SHAPES,
                                 default='square')
+    objects = models.Manager()
+    built = RoomManager()
 
     class Meta:
         ordering = ('-name',)
